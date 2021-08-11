@@ -13,7 +13,7 @@ let data = require("../data/data.json");
 let { repository, version, author } = require("../package.json");
 
 // setup command
-client.commands.on("setup", (msg, args = []) => {
+client.commands.on("setup", async (msg, args = []) => {
   // check permissions
   if (!msg.member.permissions.has("MANAGE_CHANNELS"))
     return msg
@@ -89,7 +89,7 @@ client.commands.on("setup", (msg, args = []) => {
 });
 
 // add/remove domain command
-client.commands.on("domain", (msg, args = []) => {
+client.commands.on("domain", async (msg, args = []) => {
   // check permissions
   if (!msg.member.permissions.has("MANAGE_CHANNELS"))
     return msg
@@ -221,7 +221,7 @@ client.commands.on("domain", (msg, args = []) => {
 });
 
 // register about command
-client.commands.on("about", (msg, args = []) => {
+client.commands.on("about", async (msg, args = []) => {
   // check own permissions
   let me = await msg.guild.members.fetch(client.user.id).catch(() => {});
   if (me === undefined) return msg.reply("Aborted!").catch(() => {});
@@ -247,7 +247,7 @@ client.commands.on("about", (msg, args = []) => {
 });
 
 // help command
-client.commands.on("help", (msg, args = []) => {
+client.commands.on("help", async (msg, args = []) => {
   // check own permissions
   let me = await msg.guild.members.fetch(client.user.id).catch(() => {});
   if (me === undefined) return msg.reply("Aborted!").catch(() => {});
@@ -284,7 +284,7 @@ client.commands.on("help", (msg, args = []) => {
 });
 
 // indicators command
-client.commands.on("indicators", (msg, args = []) => {
+client.commands.on("indicators", async (msg, args = []) => {
   // check own permissions
   let me = await msg.guild.members.fetch(client.user.id).catch(() => {});
   if (me === undefined) return msg.reply("Aborted!").catch(() => {});
@@ -308,7 +308,7 @@ client.commands.on("indicators", (msg, args = []) => {
 });
 
 // check domain command
-client.commands.on("check", (msg, args = []) => {
+client.commands.on("check", async (msg, args = []) => {
   // check own permissions
   let me = await msg.guild.members.fetch(client.user.id).catch(() => {});
   if (me === undefined) return msg.reply("Aborted!").catch(() => {});
