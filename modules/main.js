@@ -74,6 +74,7 @@ client.commands.on("setup", (msg, args = []) => {
         "✅ Successfully setup the domain status for this guild!\nYou can now add domains using ``!add <domain>``"
       )
       .catch(() => {});
+    console.log(`${msg.guild.name} (${msg.guild.id}) has been setup!`);
   });
 });
 
@@ -171,6 +172,7 @@ client.commands.on("domain", (msg, args = []) => {
       res
         .edit(`✅ Successfully added the domain to the database!`)
         .catch(() => {});
+      console.log(`${domain} has been added to the database!`);
     } else if (action === "REMOVE") {
       // check if the domain is registered
       let i = data.domains.findIndex(
@@ -193,6 +195,7 @@ client.commands.on("domain", (msg, args = []) => {
       res
         .edit(`✅ Successfully removed the domain from the database!`)
         .catch(() => {});
+      console.log(`${domain} has been removed from the database!`);
     }
   });
 });
@@ -296,6 +299,7 @@ client.commands.on("check", (msg, args = []) => {
         `${getChar(status, config.indicators)} **${domain}**\n${statusHuman}`
       )
       .catch(() => {});
+    console.log(`Preformed manual check, requested by ${msg.author.username}, for domain ${domain}.`);
   });
 });
 
