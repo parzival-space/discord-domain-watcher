@@ -208,7 +208,7 @@ client.commands.on("about", (msg, args = []) => {
       `A Discord bot that displays the status of your domains inside your server using channels.\n` +
         `\n` +
         `GitHub: ${repository.url.substring(4)}\n` +
-        `Add me: https://discord.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=27664`
+        `Add me: https://discord.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=8`
     )
     .addField("Version", version, true)
     .addField("Author", author.name, true);
