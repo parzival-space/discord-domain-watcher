@@ -1,0 +1,13 @@
+{
+  "domains": [
+    {
+      "name": "example.com",
+      "channel": "0",
+      "lastStatus": 0
+    }
+  ],
+
+  "categorys": {
+    "0": "0"
+  }
+}

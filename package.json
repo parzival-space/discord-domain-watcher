@@ -1,0 +1,29 @@
+{
+  "name": "discord-domain-eye",
+  "version": "1.0.0",
+  "description": "Displays your domain/website status in your Discord using channels.",
+  "main": "modules/main.js",
+  "scripts": {
+    "start": "node ./modules/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/malte-linke/discord-domain-watcher.git"
+  },
+  "author": {
+    "name": "Malte Linke",
+    "url": "https://malte-linke.com",
+    "email": "malte.linke.ml@gmail.com"
+  },
+  "license": "GNU-3.0-or-newer",
+  "bugs": {
+    "url": "https://github.com/malte-linke/discord-domain-watcher/issues"
+  },
+  "homepage": "https://github.com/malte-linke/discord-domain-watcher#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "check-domain-availability": "^1.0.0",
+    "discord.js": "^13.0.1",
+    "node": "^16.6.1"
+  }
+}

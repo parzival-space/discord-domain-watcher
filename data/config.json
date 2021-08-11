@@ -1,0 +1,13 @@
+{
+  "indicators": {
+    "reachable":    "🟢",
+    "websiteError": "🟡",
+    "unreachable":  "🔴",
+    "unclaimed":    "⚫"
+  },
+
+  "discord": {
+    "token": "YOUR_TOKEN_HERE",
+    "prefix": "!"
+  }
+}
