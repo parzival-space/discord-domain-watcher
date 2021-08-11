@@ -20,6 +20,18 @@ client.commands.on("setup", (msg, args = []) => {
       .reply("You don't have the permission to run this command!")
       .catch(() => {});
 
+  // check own permissions
+  if (
+    !(await msg.guild.members.fetch(client.user.id)).permissions.has(
+      "ADMINISTRATOR"
+    )
+  )
+    return msg
+      .reply(
+        "Something is wrong with your permission setup. Please remove me from your server and add me again."
+      )
+      .catch(() => {});
+
   msg.reply("⚠️ Please wait...").then(async (res) => {
     // check if the guild is already setup
     if (data.categorys[msg.guild.id] !== undefined) {
@@ -84,6 +96,18 @@ client.commands.on("domain", (msg, args = []) => {
   if (!msg.member.permissions.has("MANAGE_CHANNELS"))
     return msg
       .reply("You don't have the permission to run this command!")
+      .catch(() => {});
+
+  // check own permissions
+  if (
+    !(await msg.guild.members.fetch(client.user.id)).permissions.has(
+      "ADMINISTRATOR"
+    )
+  )
+    return msg
+      .reply(
+        "Something is wrong with your permission setup. Please remove me from your server and add me again."
+      )
       .catch(() => {});
 
   // is a action and a domain is provided?
@@ -202,6 +226,18 @@ client.commands.on("domain", (msg, args = []) => {
 
 // register about command
 client.commands.on("about", (msg, args = []) => {
+  // check own permissions
+  if (
+    !(await msg.guild.members.fetch(client.user.id)).permissions.has(
+      "ADMINISTRATOR"
+    )
+  )
+    return msg
+      .reply(
+        "Something is wrong with your permission setup. Please remove me from your server and add me again."
+      )
+      .catch(() => {});
+
   let embed = client
     .createEmbed(
       "Domain Watcher",
@@ -218,6 +254,18 @@ client.commands.on("about", (msg, args = []) => {
 
 // help command
 client.commands.on("help", (msg, args = []) => {
+  // check own permissions
+  if (
+    !(await msg.guild.members.fetch(client.user.id)).permissions.has(
+      "ADMINISTRATOR"
+    )
+  )
+    return msg
+      .reply(
+        "Something is wrong with your permission setup. Please remove me from your server and add me again."
+      )
+      .catch(() => {});
+
   msg
     .reply(
       `This is a list of all the commands you can use with this bot.\n` +
@@ -245,6 +293,18 @@ client.commands.on("help", (msg, args = []) => {
 
 // indicators command
 client.commands.on("indicators", (msg, args = []) => {
+  // check own permissions
+  if (
+    !(await msg.guild.members.fetch(client.user.id)).permissions.has(
+      "ADMINISTRATOR"
+    )
+  )
+    return msg
+      .reply(
+        "Something is wrong with your permission setup. Please remove me from your server and add me again."
+      )
+      .catch(() => {});
+
   msg
     .reply(
       `Here you can see the meaning of the indicators.\n` +
@@ -259,6 +319,18 @@ client.commands.on("indicators", (msg, args = []) => {
 
 // check domain command
 client.commands.on("check", (msg, args = []) => {
+  // check own permissions
+  if (
+    !(await msg.guild.members.fetch(client.user.id)).permissions.has(
+      "ADMINISTRATOR"
+    )
+  )
+    return msg
+      .reply(
+        "Something is wrong with your permission setup. Please remove me from your server and add me again."
+      )
+      .catch(() => {});
+
   if (args.length < 1)
     return msg.reply("🛑 You need to provide a domain!").catch(() => {});
 
@@ -299,7 +371,9 @@ client.commands.on("check", (msg, args = []) => {
         `${getChar(status, config.indicators)} **${domain}**\n${statusHuman}`
       )
       .catch(() => {});
-    console.log(`Preformed manual check, requested by ${msg.author.username}, for domain ${domain}.`);
+    console.log(
+      `Preformed manual check, requested by ${msg.author.username}, for domain ${domain}.`
+    );
   });
 });
 
