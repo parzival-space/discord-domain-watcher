@@ -1,4 +1,4 @@
-const { Client, Intents } = require('discord.js');
+const { Client, Intents, MessageEmbed } = require('discord.js');
 const EventEmiter = require('events');
 const config = require('../data/config.json');
 
@@ -12,7 +12,7 @@ class ExtendedClient extends Client {
       this.#init();
     });
     
-    this.login("ODcwOTg5NjgzMTg0Nzc5MzE0.YQUyWg.MWDfDA46793WVKXKkyD8M-giF_k");
+    this.login(config.discord.token);
 
     this.commands = new EventEmiter();
   }
@@ -32,6 +32,13 @@ class ExtendedClient extends Client {
       // emit command event
       this.commands.emit(command, msg, parts);
     });
+  }
+
+  createEmbed(title, description, color = 0xFFFFFF) {
+    return new MessageEmbed()
+      .setTitle(title)
+      .setDescription(description)
+      .setColor(color);
   }
 }
 

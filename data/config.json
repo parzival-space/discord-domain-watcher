@@ -8,6 +8,7 @@
 
   "discord": {
     "token": "YOUR_TOKEN_HERE",
-    "prefix": "!"
+    "prefix": "!",
+    "interval": 5
   }
 }
