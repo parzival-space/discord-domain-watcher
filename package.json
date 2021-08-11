@@ -4,7 +4,7 @@
   "description": "Displays your domain/website status in your Discord using channels.",
   "main": "modules/main.js",
   "scripts": {
-    "start": "node ./modules/main.js"
+    "start": "node --no-warnings ./modules/main.js"
   },
   "repository": {
     "type": "git",

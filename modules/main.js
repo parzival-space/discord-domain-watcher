@@ -5,9 +5,6 @@ const { join } = require("path");
 // display logo
 require("./logo");
 
-// hacky workarounds for discord.js annoying behaviour
-require('./suppress');
-
 const Discord = require("./discord");
 let client = new Discord();
 
