@@ -1,6 +1,6 @@
 # Domain Watcher
 
-Domain Watcher is  Discord bot that displays the status of your domains using channels directly inside your server.</br>
+Domain Watcher is a Discord bot that displays the status of your domains using channels directly inside your server.</br>
 I host a public version of this bot. If you want this bot on your server, just click [here](https://discord.com/oauth2/authorize?client_id=874997730433433631&scope=bot&permissions=8).</br>
 
 </br>

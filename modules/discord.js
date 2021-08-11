@@ -31,6 +31,9 @@ class ExtendedClient extends Client {
 
       // emit command event
       this.commands.emit(command, msg, parts);
+
+      // show help command as status
+      this.user.setPresence({ activities: [{ name: `${config.discord.prefix}help`, type: 'LISTENING'}], status: 'online'});
     });
   }
 
