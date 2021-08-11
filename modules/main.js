@@ -21,11 +21,9 @@ client.commands.on("setup", (msg, args = []) => {
       .catch(() => {});
 
   // check own permissions
-  if (
-    !(await msg.guild.members.fetch(client.user.id)).permissions.has(
-      "ADMINISTRATOR"
-    )
-  )
+  let me = await msg.guild.members.fetch(client.user.id).catch(() => {});
+  if (me === undefined) return msg.reply("Aborted!").catch(() => {});
+  if (!me.permissions.has("ADMINISTRATOR"))
     return msg
       .reply(
         "Something is wrong with your permission setup. Please remove me from your server and add me again."
@@ -99,11 +97,9 @@ client.commands.on("domain", (msg, args = []) => {
       .catch(() => {});
 
   // check own permissions
-  if (
-    !(await msg.guild.members.fetch(client.user.id)).permissions.has(
-      "ADMINISTRATOR"
-    )
-  )
+  let me = await msg.guild.members.fetch(client.user.id).catch(() => {});
+  if (me === undefined) return msg.reply("Aborted!").catch(() => {});
+  if (!me.permissions.has("ADMINISTRATOR"))
     return msg
       .reply(
         "Something is wrong with your permission setup. Please remove me from your server and add me again."
@@ -227,11 +223,9 @@ client.commands.on("domain", (msg, args = []) => {
 // register about command
 client.commands.on("about", (msg, args = []) => {
   // check own permissions
-  if (
-    !(await msg.guild.members.fetch(client.user.id)).permissions.has(
-      "ADMINISTRATOR"
-    )
-  )
+  let me = await msg.guild.members.fetch(client.user.id).catch(() => {});
+  if (me === undefined) return msg.reply("Aborted!").catch(() => {});
+  if (!me.permissions.has("ADMINISTRATOR"))
     return msg
       .reply(
         "Something is wrong with your permission setup. Please remove me from your server and add me again."
@@ -255,11 +249,9 @@ client.commands.on("about", (msg, args = []) => {
 // help command
 client.commands.on("help", (msg, args = []) => {
   // check own permissions
-  if (
-    !(await msg.guild.members.fetch(client.user.id)).permissions.has(
-      "ADMINISTRATOR"
-    )
-  )
+  let me = await msg.guild.members.fetch(client.user.id).catch(() => {});
+  if (me === undefined) return msg.reply("Aborted!").catch(() => {});
+  if (!me.permissions.has("ADMINISTRATOR"))
     return msg
       .reply(
         "Something is wrong with your permission setup. Please remove me from your server and add me again."
@@ -294,11 +286,9 @@ client.commands.on("help", (msg, args = []) => {
 // indicators command
 client.commands.on("indicators", (msg, args = []) => {
   // check own permissions
-  if (
-    !(await msg.guild.members.fetch(client.user.id)).permissions.has(
-      "ADMINISTRATOR"
-    )
-  )
+  let me = await msg.guild.members.fetch(client.user.id).catch(() => {});
+  if (me === undefined) return msg.reply("Aborted!").catch(() => {});
+  if (!me.permissions.has("ADMINISTRATOR"))
     return msg
       .reply(
         "Something is wrong with your permission setup. Please remove me from your server and add me again."
@@ -320,11 +310,9 @@ client.commands.on("indicators", (msg, args = []) => {
 // check domain command
 client.commands.on("check", (msg, args = []) => {
   // check own permissions
-  if (
-    !(await msg.guild.members.fetch(client.user.id)).permissions.has(
-      "ADMINISTRATOR"
-    )
-  )
+  let me = await msg.guild.members.fetch(client.user.id).catch(() => {});
+  if (me === undefined) return msg.reply("Aborted!").catch(() => {});
+  if (!me.permissions.has("ADMINISTRATOR"))
     return msg
       .reply(
         "Something is wrong with your permission setup. Please remove me from your server and add me again."
