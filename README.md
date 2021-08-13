@@ -3,14 +3,10 @@
 Domain Watcher is a Discord bot that displays the status of your domains using channels directly inside your server.</br>
 I host a public version of this bot. If you want this bot on your server, just click [here](https://discord.com/oauth2/authorize?client_id=874997730433433631&scope=bot&permissions=8).</br>
 
-</br>
-
 ## How to use
 
 Add the bot to your server. You can do this by using the [Bot Invite](https://discordapp.com/oauth2/authorize?client_id=874997730433433631&scope=bot&permissions=8).</br>
 After that, just use the `!setup` command to set up the bot.</br>
-
-</br>
 
 ## Commands
 
@@ -25,8 +21,6 @@ This is a list of all the commands you can use with this bot.
 | `!indicators` | Shows the meaning of the indicators. |
 | `!setup` | Sets up the bot. |
 
-</br>
-
 ## Indicators
 
 Here you can see the meaning of the indicators.
@@ -37,8 +31,6 @@ Here you can see the meaning of the indicators.
 | 🟡 | The domain is claimed and serving content, but the website returned an error. |
 | 🔴 | The domain is claimed and not serving content. | 
 | ⚫ | The domain is not claimed. |
-
-</br>
 
 ## Demo
 
