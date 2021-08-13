@@ -1,6 +1,6 @@
 {
   "name": "discord-domain-eye",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Displays your domain/website status in your Discord using channels.",
   "main": "modules/main.js",
   "scripts": {
