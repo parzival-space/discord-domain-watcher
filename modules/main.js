@@ -82,7 +82,7 @@ client.commands.on("setup", async (msg, args = []) => {
 
     res
       .edit(
-        "✅ Successfully setup the domain status for this guild!\nYou can now add domains using ``!add <domain>``"
+        "✅ Successfully setup the domain status for this guild!\nYou can now add domains using ``" + config.discord.prefix + "domain add <domain> [display_name]``"
       )
       .catch(() => { });
     console.log(`${msg.guild.name} (${msg.guild.id}) has been setup!`);
@@ -415,7 +415,7 @@ client.commands.on("rename", async (msg, args = []) => {
           .catch(() => { });
 
       // update domain in database
-      clearInterval.display = display;
+      data.domains[i].display = display;
 
       // rename channel
       let channel = msg.guild.channels.cache.find(
@@ -448,6 +448,8 @@ function updateDomains() {
         `Unexpected error while trying to check domain ${domain.name} status!`
       );
 
+    console.log(domain.display);
+
     // update status
     if (status !== domain.lastStatus) {
       if (domain.guild === "0") return;
@@ -466,12 +468,8 @@ function updateDomains() {
         );
 
       let name = domain.name;
-      if (
-        domain.display != null &&
-        domain.display != "" &&
-        domain.display != undefined
-      )
-        name = domain.display;
+      if (domain.display == undefined || domain.display == null) domain.display = "";
+      if (domain.display != "") name = domain.display;
 
       await channel
         .setName(`${getChar(status, config.indicators)} ${name}`)
