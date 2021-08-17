@@ -448,7 +448,7 @@ function updateDomains() {
         `Unexpected error while trying to check domain ${domain.name} status!`
       );
 
-    console.log(domain.display);
+    //console.log(domain.display);
 
     // update status
     if (status !== domain.lastStatus) {
