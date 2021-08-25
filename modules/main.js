@@ -14,7 +14,7 @@ let data = require("../data/data.json");
 let { repository, version, author } = require("../package.json");
 
 // wait for every guild to complete the action
-let pendingGuilds = [];
+let pendingGuilds = new Map();
 
 // setup command
 client.commands.on("setup", async (msg, args = []) => {
@@ -35,11 +35,11 @@ client.commands.on("setup", async (msg, args = []) => {
       .catch(() => { });
 
   // check if guild has pending action
-  if (pendingGuilds.includes(msg.guild.id)){
+  if (pendingGuilds.get(msg.guild.id) === true){
     return msg
       .reply("You have pending actions!")
       .catch(() => { });
-  } else pendingGuilds.push(msg.guild.id);
+  } else pendingGuilds.set(msg.guild.id, true);
   
   msg.reply("⚠️ Please wait...").then(async (res) => {
     // check if the guild is already setup
@@ -96,10 +96,8 @@ client.commands.on("setup", async (msg, args = []) => {
       )
       .catch(() => { });
     console.log(`${msg.guild.name} (${msg.guild.id}) has been setup!`);
-  }).finally(() => {
-    let i = pendingGuilds.indexOf(msg.guild.id, 1);
-    if (i == -1) return;
-    pendingGuilds.splice(i, 1);
+  }).finally(() => pendingGuilds.set(msg.guild.id, false));
+
   });
 });
 
@@ -136,11 +134,11 @@ client.commands.on("domain", async (msg, args = []) => {
   if (args.length >= 3) display = args.splice(2).join(" ");
 
   // check if guild has pending action
-  if (pendingGuilds.includes(msg.guild.id)){
+  if (pendingGuilds.get(msg.guild.id) === true){
     return msg
       .reply("You have pending actions!")
       .catch(() => { });
-  } else pendingGuilds.push(msg.guild.id);
+  } else pendingGuilds.set(msg.guild.id, true);
   
   msg.reply(`⚠️ Please wait...`).then(async (res) => {
     // check if the guild is already setup
@@ -247,11 +245,8 @@ client.commands.on("domain", async (msg, args = []) => {
         .catch(() => { });
       console.log(`${domain} has been removed from the database!`);
     }
-  }).finally(() => {
-    let i = pendingGuilds.indexOf(msg.guild.id, 1);
-    if (i == -1) return;
-    pendingGuilds.splice(i, 1);
-  });
+  }).finally(() => pendingGuilds.set(msg.guild.id, false));
+
 });
 
 // register about command
@@ -360,11 +355,11 @@ client.commands.on("check", async (msg, args = []) => {
   let domain = args[0];
 
   // check if guild has pending action
-  if (pendingGuilds.includes(msg.guild.id)){
+  if (pendingGuilds.get(msg.guild.id) === true){
     return msg
       .reply("You have pending actions!")
       .catch(() => { });
-  } else pendingGuilds.push(msg.guild.id);
+  } else pendingGuilds.set(msg.guild.id, true);
   
   msg.reply(`⚠️ Please wait...`).then(async (res) => {
     // check current domain status
@@ -404,11 +399,7 @@ client.commands.on("check", async (msg, args = []) => {
     console.log(
       `Preformed manual check, requested by ${msg.author.username}, for domain ${domain}.`
     );
-  }).finally(() => {
-    let i = pendingGuilds.indexOf(msg.guild.id, 1);
-    if (i == -1) return;
-    pendingGuilds.splice(i, 1);
-  });
+  }).finally(() => pendingGuilds.set(msg.guild.id, false));
 });
 
 // rename domain command
@@ -434,11 +425,11 @@ client.commands.on("rename", async (msg, args = []) => {
     return msg.reply("🛑 You need to provide a domain!").catch(() => { });
 
     // check if guild has pending action
-    if (pendingGuilds.includes(msg.guild.id)){
+    if (pendingGuilds.get(msg.guild.id) === true){
       return msg
         .reply("You have pending actions!")
         .catch(() => { });
-    } else pendingGuilds.push(msg.guild.id);
+    } else pendingGuilds.set(msg.guild.id, true);
     
   msg
     .reply(`⚠️ Please wait...`)
@@ -476,11 +467,7 @@ client.commands.on("rename", async (msg, args = []) => {
       await res
         .edit(`✅ Successfully renamed the domain!`)
         .catch(() => { });
-    }).catch(() => { }).finally(() => {
-      let i = pendingGuilds.indexOf(msg.guild.id, 1);
-      if (i == -1) return;
-      pendingGuilds.splice(i, 1);
-    });
+    }).catch(() => { }).finally(() => pendingGuilds.set(msg.guild.id, false));
 
 });
 
