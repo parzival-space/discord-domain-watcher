@@ -13,6 +13,9 @@ let config = require("../data/config.json");
 let data = require("../data/data.json");
 let { repository, version, author } = require("../package.json");
 
+// wait for every guild to complete the action
+let pendingGuilds = [];
+
 // setup command
 client.commands.on("setup", async (msg, args = []) => {
   // check permissions
@@ -31,6 +34,13 @@ client.commands.on("setup", async (msg, args = []) => {
       )
       .catch(() => { });
 
+  // check if guild has pending action
+  if (pendingGuilds.includes(msg.guild.id)){
+    return msg
+      .reply("You have pending actions!")
+      .catch(() => { });
+  } else pendingGuilds.push(msg.guild.id);
+  
   msg.reply("⚠️ Please wait...").then(async (res) => {
     // check if the guild is already setup
     if (data.categorys[msg.guild.id] !== undefined) {
@@ -86,6 +96,10 @@ client.commands.on("setup", async (msg, args = []) => {
       )
       .catch(() => { });
     console.log(`${msg.guild.name} (${msg.guild.id}) has been setup!`);
+  }).finally(() => {
+    let i = pendingGuilds.indexOf(msg.guild.id, 1);
+    if (i == -1) return;
+    pendingGuilds.slice(i, 1);
   });
 });
 
@@ -121,6 +135,13 @@ client.commands.on("domain", async (msg, args = []) => {
   let display = undefined;
   if (args.length >= 3) display = args.splice(2).join(" ");
 
+  // check if guild has pending action
+  if (pendingGuilds.includes(msg.guild.id)){
+    return msg
+      .reply("You have pending actions!")
+      .catch(() => { });
+  } else pendingGuilds.push(msg.guild.id);
+  
   msg.reply(`⚠️ Please wait...`).then(async (res) => {
     // check if the guild is already setup
     if (data.categorys[msg.guild.id] === undefined)
@@ -226,6 +247,10 @@ client.commands.on("domain", async (msg, args = []) => {
         .catch(() => { });
       console.log(`${domain} has been removed from the database!`);
     }
+  }).finally(() => {
+    let i = pendingGuilds.indexOf(msg.guild.id, 1);
+    if (i == -1) return;
+    pendingGuilds.slice(i, 1);
   });
 });
 
@@ -285,7 +310,7 @@ client.commands.on("help", async (msg, args = []) => {
       `\n` +
       `**${config.discord.prefix}indicators**\n` +
       `Shows the meaning of the indicators.\n` +
-      `**${config.discord.prefix}rename <domain> [display_text]**\n``Changes the display text of the given domain.\n` +
+      `**${config.discord.prefix}rename <domain> [display_text]**\nChanges the display text of the given domain.\n` +
       `\n` +
       `**${config.discord.prefix}setup**\n` +
       `Sets up the bot for the first time.\n`
@@ -334,6 +359,13 @@ client.commands.on("check", async (msg, args = []) => {
 
   let domain = args[0];
 
+  // check if guild has pending action
+  if (pendingGuilds.includes(msg.guild.id)){
+    return msg
+      .reply("You have pending actions!")
+      .catch(() => { });
+  } else pendingGuilds.push(msg.guild.id);
+  
   msg.reply(`⚠️ Please wait...`).then(async (res) => {
     // check current domain status
     let status = await checkDomain(domain).catch(() => { });
@@ -372,6 +404,10 @@ client.commands.on("check", async (msg, args = []) => {
     console.log(
       `Preformed manual check, requested by ${msg.author.username}, for domain ${domain}.`
     );
+  }).finally(() => {
+    let i = pendingGuilds.indexOf(msg.guild.id, 1);
+    if (i == -1) return;
+    pendingGuilds.slice(i, 1);
   });
 });
 
@@ -397,6 +433,13 @@ client.commands.on("rename", async (msg, args = []) => {
   if (args.length < 1)
     return msg.reply("🛑 You need to provide a domain!").catch(() => { });
 
+    // check if guild has pending action
+    if (pendingGuilds.includes(msg.guild.id)){
+      return msg
+        .reply("You have pending actions!")
+        .catch(() => { });
+    } else pendingGuilds.push(msg.guild.id);
+    
   msg
     .reply(`⚠️ Please wait...`)
     .then(async (res) => {
@@ -433,7 +476,11 @@ client.commands.on("rename", async (msg, args = []) => {
       await res
         .edit(`✅ Successfully renamed the domain!`)
         .catch(() => { });
-    }).catch(() => { });
+    }).catch(() => { }).finally(() => {
+      let i = pendingGuilds.indexOf(msg.guild.id, 1);
+      if (i == -1) return;
+      pendingGuilds.slice(i, 1);
+    });
 
 });
 
