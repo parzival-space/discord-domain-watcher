@@ -29,7 +29,7 @@ module.exports = {
   checkDomain: (domain = "example.com") => {
     return new Promise(async (resolve) => {
       // check if domain is available
-      let available = await isAvailable(domain);
+      let available = await isAvailable(domain).catch(() => {});
       if (available) return resolve(status.AVAILABLE);
     
       // check if website is reachable
