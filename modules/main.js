@@ -99,7 +99,7 @@ client.commands.on("setup", async (msg, args = []) => {
   }).finally(() => {
     let i = pendingGuilds.indexOf(msg.guild.id, 1);
     if (i == -1) return;
-    pendingGuilds.slice(i, 1);
+    pendingGuilds.splice(i, 1);
   });
 });
 
@@ -250,7 +250,7 @@ client.commands.on("domain", async (msg, args = []) => {
   }).finally(() => {
     let i = pendingGuilds.indexOf(msg.guild.id, 1);
     if (i == -1) return;
-    pendingGuilds.slice(i, 1);
+    pendingGuilds.splice(i, 1);
   });
 });
 
@@ -407,7 +407,7 @@ client.commands.on("check", async (msg, args = []) => {
   }).finally(() => {
     let i = pendingGuilds.indexOf(msg.guild.id, 1);
     if (i == -1) return;
-    pendingGuilds.slice(i, 1);
+    pendingGuilds.splice(i, 1);
   });
 });
 
@@ -479,7 +479,7 @@ client.commands.on("rename", async (msg, args = []) => {
     }).catch(() => { }).finally(() => {
       let i = pendingGuilds.indexOf(msg.guild.id, 1);
       if (i == -1) return;
-      pendingGuilds.slice(i, 1);
+      pendingGuilds.splice(i, 1);
     });
 
 });
