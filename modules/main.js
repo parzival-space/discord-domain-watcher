@@ -97,8 +97,6 @@ client.commands.on("setup", async (msg, args = []) => {
       .catch(() => { });
     console.log(`${msg.guild.name} (${msg.guild.id}) has been setup!`);
   }).finally(() => pendingGuilds.set(msg.guild.id, false));
-
-  });
 });
 
 // add/remove domain command
